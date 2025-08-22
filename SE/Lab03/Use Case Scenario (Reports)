@@ -1,0 +1,4 @@
+
+The manager or finance executive logs into the system and chooses the option to manage reports. They may request to generate a new report by selecting the type of report they want (payment reports, booking reports, or employee performance reports) and providing any required filters such as date ranges or booking categories.
+If the system accepts the input, it generates the report and presents it to the user. The manager or finance executive can then choose to edit the report by changing the filters, and the system updates the report accordingly.
+If they decide that a report is no longer needed, they may delete it. The system then removes the report from storage. All actions are reflected in the system so that updated or newly generated reports are available for later use.
