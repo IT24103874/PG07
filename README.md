@@ -13,3 +13,9 @@ IT24103863 - Weerakoon N.B took care of resizing the images to a smaller size (2
 IT24103874 - Rathnayake O.M augmented the images with respect to brightness and contrast to make the dataset more diverse so that the model can still identify the wildfire when there is less light (brightness) and lower quality images (contrast).
 IT24103988 - Wickramarathna W.G.S.A.S carried out the normalizing of the images, turning the numbers between 0 to 255 of a pixel to a number between 0 to 1.
 IT24103878 - Amarakoon M.B.V.B.A finally encoded the images, 0 for no wildfire and 1 for wildfire.
+
+**How to run code**
+Step 1: Make sure all the necessary libraries are installed, including os, cv2, shutil, numpy, matplotlib.pyplot, seaborn, warnings, Image, random, and collections.
+Step 2: Download the data file and store it within your disk.
+Step 3: Replace the [] in each preprocessing technique with the path to your data file. example: "[]/train" => "users/IT12345678/Documents/AIML/data/train"
+Step 4: Run the code in the group_pipeline.ipnyb file from top to bottom.
