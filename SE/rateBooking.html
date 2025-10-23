@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rate Booking</title>
+        <link rel="stylesheet" href="/css/index.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="navBar">
+            <div>
+                <p style="color: #670014;">X - Car Rental</p>
+            </div>
+        </div>
+        <div class="bodyClass" style="flex-direction: column; align-items: center;">
+            <h2>Rate your booking</h2>
+            <form method="post" action="/submitRating" style="display: flex; flex-direction: column; gap: 10px; width: 420px;">
+                <label>Booking ID</label>
+                <input type="hidden" name="bookingId" th:text="${session.booking.getId()}" required th:value="${session.booking.getId()}"/>
+
+                <label>Stars (1-5)</label>
+                <input type="number" name="stars" min="1" max="5" required />
+
+
+                <label>Comment</label>
+                <textarea name="comment" rows="4" placeholder="Share more about your experience..." required></textarea>
+                <input type="hidden" th:value="${session.customer.getId()}" name="Id"/>
+
+
+                <button type="submit" style="background-color: black; color: white;">Submit rating</button>
+            </form>
+        </div>
+        <footer>
+            <div class="line">
+                <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+            </div>
+        </footer>
+    </body>
+    </html>
+
+
