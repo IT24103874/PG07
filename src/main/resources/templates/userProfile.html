@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" th:inline="html">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Employee Profile X</title>
+        <link rel="stylesheet" href="../css/index.css">
+
+        <!--Links-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div th:replace="~{fragments/navbar :: navbar}"></div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 100px;">
+            <div class="bodyClass">
+                <div class="leftSide">
+                    <h1 style="margin-top: 5px;">Welcome Back, <span th:text="${session.customer.getFirstname()}">Simone R.</span></h1>
+                    <div class="formInTheMiddle" style="margin-top: 50px;">
+                        <div class="sideBySideForm">
+                            <div class="formPart">
+                                <p>First name *</p>
+                                <div class="formInput" th:text="${session.customer.getFirstname()}">Simone</div>
+                            </div>
+                            <div class="formPart">
+                                <p>Last name *</p>
+                                <div class="formInput" th:text="${session.customer.getLastname()}">Riverstone</div>
+                            </div>
+                        </div>
+                        <div class="formPart">
+                            <p>NIC *</p>
+                            <div class="formInput" th:text="${session.customer.getNic()}">1230981029V</div>
+                        </div>
+                        <div class="formPart">
+                            <p>Phone number *</p>
+                            <div class="formInput" th:text="${session.customer.getPhone()}">0712930495</div>
+                        </div>
+                        <div class="formPart">
+                            <p>Account number</p>
+                            <div class="formInput" th:text="${session.customer.getAccount()}">12345069879450</div>
+                        </div>
+                        <div class="formPart">
+                            <p>Bank</p>
+                            <div class="formInput" th:text="${session.customer.getBank()}">Commercial Bank</div>
+                        </div>
+                        <div class="formPart">
+                            <p>Branch</p>
+                            <div class="formInput" th:text="${session.customer.getBranch()}">Colombo 07</div>
+                        </div>
+                        <form style="display: flex; gap: 10px;" action="/userEditProfile" method="get" >
+                            <button class="buttonClass" style="background-color: black; color: white;" name="type" value="edit" type="submit">Edit info</button>
+                            <button class="buttonClass" type="submit" name="type" value="logOut">Log out</button>
+                        </form>
+                    </div>
+                </div>
+                <div>
+                    <img src="/images/linkedInGuy.jpg" style="width: 450px; height: 635px; object-fit: cover;">
+                    <p style="width: 450px; color: #909090; font-size: 15px;">*Please note that the details you’ve entered for your bank will be used for sending money, refunding and etc. It is your duty to ensure that the information is valid.</p>
+                </div>
+            </div>
+            <div style="width: 70%;">
+                <h1 style="font-size: 35px;">Your Collection</h1>
+                <p style="color: #6a6a6a;">Curated, listed, and earning. Your collection in motion.</p>
+                <div style="width: 100%; padding-top: 40px; display: flex; flex-direction: row; gap: 25px; overflow-x: auto; padding-bottom: 15px;" th:each="car : ${cars}">
+                    <form th:each="car : ${cars}"
+                         th:style="|width:350px; height:350px;
+                background-image:url('data:image/jpeg;base64,${car.base64Image}');
+                background-position:center;
+                background-size:cover;
+                background-repeat:no-repeat;
+                border-radius:15px;
+                display:flex;
+                flex-direction:column-reverse;
+                padding:10px;|"
+                    method="get">
+                        <button style="width:75px; margin-top:10px; font-size:13px;" formaction="/editCar">edit</button>
+                        <p style="font-size:13px; color:#6a6a6a;" th:text="${car.description}"></p>
+                        <input type="hidden" name="carId" th:value="${car.id}">
+                        <h1 style="font-size:17px;" th:text="${car.type}"></h1>
+                    </form>
+                </div>
+                <a href="/viewRegisterCar">
+                    <button type="button" style="background-color: black; color: white;">Add to Collection</button>
+                </a>
+            </div>
+        </div>
+        <footer>
+            <div class="line">
+                <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+                <div class="contactBox">
+                    <h3>Contact us</h3>
+                    <div>
+                        <div class="contactInfo">
+                            <p>Email</p>
+                            <p>Number</p>
+                            <p>Fax</p>
+                        </div>
+                        <div class="contactInfo">
+                            <p>info@XRental.com</p>
+                            <p>+94 11 029 4203</p>
+                            <p>idontreallyknow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

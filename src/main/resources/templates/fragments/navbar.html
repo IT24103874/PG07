@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<body>
+<div th:fragment="navbar" class="navBar">
+  <div>
+    <p style="color: #670014;">X - Car Rental</p>
+  </div>
+  <form class="navLinks" method="get">
+    <input type="hidden" th:value="${session.employee != null? session.employee.getEid() : session.customer.getId() }" name="Id"/>
+    <button type="submit" th:formaction="${session.employee != null ? '/employeeProfile' : '/customerProfile'}">Profile</button>
+    <button type="submit" th:formaction="${session.employee != null ? '/getFilteredBookings' : '/getAllBookings'}">Bookings</button>
+    <button type="submit" formaction="/notifications">Activity</button>
+    <button type="submit" formaction="/payments" th:if="${session.employee != null and (session.employee.type == 'finance' or session.employee.type == 'manager')}">Payments</button>
+    <button type="submit" formaction="/employeeList" th:if="${session.employee != null and session.employee.type == 'manager'}">Users</button>
+    <button style="background-color: black; color: white;" type="submit" formaction="/reportsList"
+            th:if="${session.employee != null and session.employee.type != 'driver' and session.employee.type != 'emp'}">Reports</button>
+    <button style="background-color: black; color: white;" type="submit" th:if="${session.customer != null}" formaction="/userDashboard">Home</button>
+  </form>
+</div>
+</body>
+</html>

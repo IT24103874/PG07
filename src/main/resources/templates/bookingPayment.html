@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Booking | Payment</title>
+        <link rel="stylesheet" href="../css/logIn.css">
+        <link rel="stylesheet" href="../css/index.css">
+
+        <!--Links-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="progressBar">
+            <p style="top: 105px; left: 95px; position: absolute; color: #000000;">Preference</p>
+            <p style="top: 105px; left: 722px; position: absolute; color: #000000;">Payment</p>
+            <p style="top: 105px; left: 1340px; position: absolute; color: #727272;">Complete</p>
+            <div style="width: 635px; height: 0px; left: 120px; top: 75px; position: absolute; outline: 1px #000000 solid; outline-offset: -0.50px"></div>
+            <div style="width: 635px; height: 0px; left: 755px; top: 75px; position: absolute; outline: 1px #D9D9D9 solid; outline-offset: -0.50px"></div>
+            <div style="width: 50px; height: 50px; left: 111px; top: 50px; position: absolute; background: #000000; border-radius: 9999px"></div>
+            <div style="width: 50px; height: 50px; left: 730px; top: 50px; position: absolute; background: #000000; border-radius: 9999px"></div>
+            <div style="width: 50px; height: 50px; left: 1350px; top: 50px; position: absolute; background: #D9D9D9; border-radius: 9999px"></div>
+        </div>
+        <div class="bodyClass" style="padding-top: 90px;">
+            <div class="leftForm">
+                <div class="topInfo">
+                    <h1>2008 Nissan GT-R</h1>
+                    <p style="color: darkgray;">A description that is worthy of the magnificence this car truly carries.</p>
+                    <p style="padding-top: 20px;">Payment information:</p>
+                    <p>Account: 2343034</p>
+                    <p>Bank: Commercial Bank</p>
+                    <p>Branch: Colombo 07</p>
+                    <p>Reference: reference</p>
+                </div>
+                <form class="formInTheMiddle" style="margin-top: 25px; padding-top: 20px; width: 500px; display: flex; flex-wrap: wrap;" action="/createPayment" method="get">
+                    <div class="formPart">
+                        <label>Total amount</label>
+                        <div class="fakeInput">$ 540</div>
+                    </div>
+                    <div class="formPart">
+                        <label for="accountNumber">Account number</label>
+                        <input id="accountNumber" name="accountNumber" type="text" readonly/>
+                    </div>
+                    <div class="buttonsContainer">
+                        <input type="submit" class="buttonClass" value="Rent" style="height: 40px; margin-top: 30px;"/>
+                    </div>
+                    <p style="padding-top: 25px; color: #9d9d9d; font-size: 15px;">Please note that in the case of driver unavailability, or un-listing by the car owner, you will be given an email and a call to inform you. In such cases, you can either request a different vehicle or you will be provided with a complete refund. Ensure that all your belongings are taken from the vehicle as X will not be compensating for them. On time picking-up, dropping-off as well as safe driving is in your hands entirely. X will not be compensating for any damages made on the vehicle either. It is your solely your responsiblity.</p>
+                </form>
+            </div>
+            <div class="rightImage">
+                <img src="../images/carWithPurse.jpg" style="width: 618px; height: 665px;"/>
+            </div>
+        </div>
+        <footer>
+            <div class="line">
+                <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+                <div class="contactBox">
+                    <h3>Contact us</h3>
+                    <div>
+                        <div class="contactInfo">
+                            <p>Email</p>
+                            <p>Number</p>
+                            <p>Fax</p>
+                        </div>
+                        <div class="contactInfo">
+                            <p>info@XRental.com</p>
+                            <p>+94 11 029 4203</p>
+                            <p>idontreallyknow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

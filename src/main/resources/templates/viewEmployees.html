@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="/css/index.css">
+
+    <!--Links-->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<div class="bodyClass" style="flex-direction: column; align-items: center;">
+    <form class="searchBox">
+        <button style="width: 100px;" type="button" onclick="window.location.href='/createEmployees'">Create</button>
+    </form>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+        <div class="blocks" th:each="employee : ${employees}">
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <h3><span th:text="${employee.getFirstname()}">First</span> <span th:text="${employee.getLastname()}">last</span></h3>
+                <p>Type: <span th:text="${employee.getType()}">Emp</span>, EID: <span th:text="${employee.getEid()}">0</span></p>
+                <p style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 800px;">
+                    Email: <span th:text="${employee.getEmail()}">email@gmail.com</span> Phone: <span th:text="${employee.getPhone()}">0715665050</span>
+                </p>
+            </div>
+            <form method="post" action="/deleteOrEditEmployees">
+                <input type="hidden" name="employee" th:value="${employee.getEid()}" th:name="eid">
+                <button style="background-color: white; border: 1px solid #E0E0E0;" type="submit" name="type" value="edit">Edit</button>
+                <button style="background-color: black; color: white;" type="submit" name="type" value="delete">Delete</button>
+            </form>
+        </div>
+    </div>
+    <div class="endingLineBox">
+        <div class="endingLine"></div>
+        <p>End of reports</p>
+        <div class="endingLine"></div>
+    </div>
+</div>
+<footer>
+    <div class="line">
+        <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+        <div class="contactBox">
+            <h3>Contact us</h3>
+            <div>
+                <div class="contactInfo">
+                    <p>Email</p>
+                    <p>Number</p>
+                    <p>Fax</p>
+                </div>
+                <div class="contactInfo">
+                    <p>info@XRental.com</p>
+                    <p>+94 11 029 4203</p>
+                    <p>idontreallyknow</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reports List</title>
+        <link rel="stylesheet" href="/css/index.css">
+
+        <!--Links-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="hero-section">
+            <div class="navBar">
+                <form th:action="@{/customerProfile}" method="get">
+                    <button style="background-color: black; color: white;"
+                            type="submit"
+                            th:text="${session.customer.firstname + ' ' + #strings.substring(session.customer.lastname, 0, 1) + '.'}">
+                        Simone R.
+                    </button>
+                </form>
+                <p style="color: #670014">X - Car Rental</p>
+            </div>
+            <div style="width: 100%; display: flex; flex-direction: column; color: white; align-items: center; gap: 20px; padding-top: 385px;">
+                <h1 style="font-size: 60px;">Welcome, <span th:text="${session.customer.firstname + ' ' + #strings.substring(session.customer.lastname, 0, 1) + '.'}">Simone R.</span></h1>
+                <p style="font-size: 20px;">Your next perfect drive is just around the corner.</p>
+                <form class="searchBox" method="get" action="/getAvailableCars">
+                    <input type="datetime-local" placeholder="Start date" required name="startTime"/>
+                    <input type="datetime-local" placeholder="End date" required name="endTime"/>
+                    <button style="width: 100px; color: white; border: 1px solid white; background-color: transparent;" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="bodyClass" style="flex-direction: column; align-items: center;">
+            <div th:each="car : ${cars}" style="width: fit-content;">
+                <form style="width: 100%; min-width: 650px; display: flex; flex-direction: row; gap: 15px;" method="get" action="/bookCar">
+                    <img th:src="'data:image/jpeg;base64,' + ${car.base64Image}" style="width: 300px; height: 300px; border-radius: 15px;">
+                    <div style="display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+                        <h2 style="padding-bottom: 10px;" th:text="${car.getType()}">Some lanky car</h2>
+                        <p>Colour : <span th:text="${car.getColour()}">null</span></p>
+                        <p th:text="${car.getDescription()}">A description about these absolutely beautiful piece of art</p>
+                        <p>Price: <span th:text="${car.getFeePerHour()}">500</span> Pounds</p>
+                        <p>Rating: <span th:text="${car.getRating()}">4</span>/5</p>
+                        <button style="background-color: black; color: white; border-top: 50px" type="submit">Rent</button>
+                        <input type="hidden" th:value="${car.getId()}" name="carId">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="endingLineBox" th:if="${cars.size() == 0}">
+            <div class="endingLine"></div>
+            <p>Search to start</p>
+            <div class="endingLine"></div>
+        </div>
+        <footer>
+            <div class="line">
+                <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+                <div class="contactBox">
+                    <h3>Contact us</h3>
+                    <div>
+                        <div class="contactInfo">
+                            <p>Email</p>
+                            <p>Number</p>
+                            <p>Fax</p>
+                        </div>
+                        <div class="contactInfo">
+                            <p>info@XRental.com</p>
+                            <p>+94 11 029 4203</p>
+                            <p>idontreallyknow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>

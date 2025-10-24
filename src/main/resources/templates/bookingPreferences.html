@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Booking | Preference</title>
+        <link rel="stylesheet" href="../css/logIn.css">
+        <link rel="stylesheet" href="../css/index.css">
+
+        <!--Links-->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+        
+    </head>
+    <body>
+        <div class="progressBar">
+            <p style="top: 105px; left: 95px; position: absolute; color: #000000;">Preference</p>
+            <p style="top: 105px; left: 722px; position: absolute; color: #727272;">Payment</p>
+            <p style="top: 105px; left: 1340px; position: absolute; color: #727272;">Complete</p>
+            <div style="width: 635px; height: 0; left: 120px; top: 75px; position: absolute; outline: 1px #D9D9D9 solid; outline-offset: -0.50px"></div>
+            <div style="width: 635px; height: 0; left: 755px; top: 75px; position: absolute; outline: 1px #D9D9D9 solid; outline-offset: -0.50px"></div>
+            <div style="width: 50px; height: 50px; left: 111px; top: 50px; position: absolute; background: #000000; border-radius: 9999px"></div>
+            <div style="width: 50px; height: 50px; left: 730px; top: 50px; position: absolute; background: #D9D9D9; border-radius: 9999px"></div>
+            <div style="width: 50px; height: 50px; left: 1350px; top: 50px; position: absolute; background: #D9D9D9; border-radius: 9999px"></div>
+        </div>
+        <div class="bodyClass" style="padding-top: 75px;">
+            <div class="leftForm">
+                <div class="topInfo">
+                    <h1 th:text="${car.getType()}">2008 Nissan GT-R</h1>
+                    <p style="color: darkgray;" th:text="${car.getDescription()}">A description that is worthy of the magnificence this car truly carries.</p>
+                </div>
+                <form class="formInTheMiddle" style="margin-top: 25px; padding-top: 20px;" action="/createBooking" method="post">
+                    <div class="formPart">
+                        <label for="pickup">Pick-up point</label>
+                        <input id="pickup" type="text" name="pickup"/>
+                    </div>
+                    <div class="formPart">
+                        <label for="dropOff">Drop off point</label>
+                        <input id="dropOff" name="dropOff" type="text" />
+                    </div>
+                    <div class="formPart">
+                        <label for="start">Time of Pick-up</label>
+                        <input id="start" name="start" type="datetime-local" />
+                    </div>
+                    <div class="formPart">
+                        <label for="end">Time of Drop - off</label>
+                        <input id="end" name="end" type="datetime-local" />
+                    </div>
+                    <div class="formPart" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+                        <label for="driver">Would you like a driver (drop-off and pick-up) ?</label>
+                        <input id="driver" type="checkbox" name="driver"/>
+                    </div>
+                    <div class="buttonsContainer">
+                        <input type="hidden" name="carID" th:value="${car.getId()}"/>
+                        <input type="hidden" name="carId" th:value="${car.getId()}"/>
+                        <input type="hidden" name="buyerID" th:value="${session.customer.getId()}"/>
+                        <input type="hidden" name="status" value="Pending"/>
+                        <input type="submit" class="buttonClass" value="Continue" style="height: 35px; margin-top: 30px;"/>
+                    </div>
+                </form>
+            </div>
+            <div class="rightImage">
+                <img th:src="'data:image/jpeg;base64,' + ${car.base64Image}" style="width: 600px; height: 600px;"/>
+            </div>
+        </div>
+        <footer>
+            <div class="line">
+                <p style="padding-top: 110px;"><span style="color: #670014;">X - Car Rental</span></p>
+                <div class="contactBox">
+                    <h3>Contact us</h3>
+                    <div>
+                        <div class="contactInfo">
+                            <p>Email</p>
+                            <p>Number</p>
+                            <p>Fax</p>
+                        </div>
+                        <div class="contactInfo">
+                            <p>info@XRental.com</p>
+                            <p>+94 11 029 4203</p>
+                            <p>idontreallyknow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
